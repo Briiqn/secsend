@@ -65,7 +65,7 @@ export class DownloadURL {
 
 export function parseDownloadURL(url: string, crypto: Crypto) {
   const obj = new URL(url);
-  const keyTxt = obj.hash.substr(1);
+  const keyTxt = obj.searchParams.get("pass") || obj.hash.substr(1);
   const id = obj.pathname.substr("/v1/download/".length);
   const bid = BaseID.fromStr(id, null);
   const preview = obj.searchParams.get("v") === "1";
